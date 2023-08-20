@@ -1,6 +1,6 @@
 package hyena.oauthlogin.config.http;
 
-import hyena.oauthlogin.oauth.github.http.GithubHttpInterface;
+import hyena.oauthlogin.infra.oauth.github.http.GithubHttpInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;

@@ -1,6 +1,6 @@
 package hyena.oauthlogin.config.converter;
 
-import hyena.oauthlogin.infra.oauth.OauthType;
+import hyena.oauthlogin.oauth.OauthType;
 import org.springframework.core.convert.converter.Converter;
 
 public class OauthTypeConverter implements Converter<String, OauthType> {
