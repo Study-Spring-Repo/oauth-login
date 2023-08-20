@@ -27,6 +27,8 @@ public class OauthService {
 
     private final OauthMemberRepository oauthMemberRepository;
 
+    private final RefreshTokenRedisRepository refreshTokenRedisRepository;
+
     private final JwtEncoder jwtEncoder;
 
     public String readAuthCodeThenRedirect(final OauthType oauthType) {
@@ -44,7 +46,10 @@ public class OauthService {
         final Member savedMember = oauthMemberRepository.save(member);
         final String accessToken = encodeJwt(savedMember);
 
-        return JwtAndRefreshTokenResponse.of(accessToken, "주세요. 리프래시");
+        final RefreshToken refreshToken = RefreshToken.newInstance(savedMember.getId());
+        final RefreshToken savedRefreshToken = refreshTokenRedisRepository.save(refreshToken);
+
+        return JwtAndRefreshTokenResponse.of(accessToken, savedRefreshToken);
     }
 
     private String encodeJwt(final Member savedMember) {
