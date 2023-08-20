@@ -27,4 +27,18 @@ public abstract class OauthException extends RuntimeException {
             super("RefreshToken 이 잘못되어 오류가 발생하였습니다.");
         }
     }
+
+    public static class HeaderAuthorization extends OauthException {
+
+        public HeaderAuthorization() {
+            super("헤더에 Authorization 이 존재하지 않습니다.");
+        }
+    }
+
+    public static class HeaderBearer extends OauthException {
+
+        public HeaderBearer() {
+            super("Authorization 이 Bearer 형식이 아닙니다.");
+        }
+    }
 }
