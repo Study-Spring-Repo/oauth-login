@@ -8,3 +8,14 @@ services:
       - 'MYSQL_USER=myuser'
     ports:
       - '3306'
+  redis:
+    image: 'redis:latest'
+    hostname: redis
+    environment:
+      - 'REDIS_PASSWORD=verysecret'
+      - 'REDIS_DATABASE=0'
+    labels:
+      - 'name=redis'
+      - 'mode=standalone'
+    ports:
+      - 6379:6379

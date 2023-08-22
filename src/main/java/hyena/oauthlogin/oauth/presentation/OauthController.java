@@ -2,7 +2,6 @@ package hyena.oauthlogin.oauth.presentation;
 
 import hyena.oauthlogin.oauth.OauthType;
 import hyena.oauthlogin.oauth.application.OauthService;
-import hyena.oauthlogin.oauth.application.TokenService;
 import hyena.oauthlogin.oauth.application.request.AccessTokenCreateRequest;
 import hyena.oauthlogin.oauth.application.request.RefreshTokenCreateRequest;
 import hyena.oauthlogin.oauth.presentation.response.JwtAndRefreshTokenResponse;
@@ -30,8 +29,6 @@ public class OauthController {
 
     private final OauthService oauthService;
 
-    private final TokenService tokenService;
-
     @GetMapping("/{oauthType}")
     public ResponseEntity<Void> redirectAuthCode(
             @PathVariable("oauthType") OauthType oauthType,
@@ -56,14 +53,14 @@ public class OauthController {
 
     @PostMapping("/refresh-token")
     public ResponseEntity<RefreshTokenResponse> createRefreshToken(@RequestBody RefreshTokenCreateRequest request) {
-        final RefreshTokenResponse response = RefreshTokenResponse.from(tokenService.createRefreshToken(request));
+        final RefreshTokenResponse response = RefreshTokenResponse.from(oauthService.createRefreshToken(request));
 
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/access-token")
     public ResponseEntity<JwtResponse> createAccessToken(@RequestBody AccessTokenCreateRequest request) {
-        final JwtResponse response = JwtResponse.from(tokenService.createJsonWebToken(request));
+        final JwtResponse response = JwtResponse.from(oauthService.createJsonWebToken(request));
 
         return ResponseEntity.ok(response);
     }
