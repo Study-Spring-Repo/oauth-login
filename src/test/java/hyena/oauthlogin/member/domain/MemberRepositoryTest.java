@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GeneralMemberRepositoryTest extends RepositoryTestConfig {
+class MemberRepositoryTest extends RepositoryTestConfig {
 
     @Autowired
-    private GeneralMemberRepository memberRepository;
+    private MemberRepository memberRepository;
 
     @Test
     void 회원을_저장한_후_조회한다() {
