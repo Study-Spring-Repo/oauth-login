@@ -3,6 +3,7 @@ package hyena.oauthlogin.oauth.client;
 import hyena.oauthlogin.oauth.OauthInformation;
 import hyena.oauthlogin.oauth.OauthType;
 import hyena.oauthlogin.oauth.exception.OauthException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Set;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 
+@Profile("!test")
 @Component
 public class OauthClientComposite {
 
